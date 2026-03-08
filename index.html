@@ -634,7 +634,21 @@ select:not(.placeholder) {
         method="POST">
       
       <div class="form-group">
-        <input type="text" name="solemnizingOfficer" placeholder="Full Name of Solemnizing Officer" required>
+       <input 
+         type="text" 
+         name="solemnizingOfficer" 
+         placeholder="Full Name of Solemnizing Officer"
+         required
+             >
+               <small style="color:#666;">
+               Format: Firstname MI. Lastname
+              </small>
+      </div>
+      <div class="form-group">
+       <input type="text" name="titlePosition" placeholder="Title / Position of Applicant" required>
+      </div>
+      <div class="form-group">
+       <textarea name="residentialAddress" placeholder="Residential Address of Applicant" required></textarea>
       </div>
       <div class="form-group">
         <input type="text" name="religiousSect" placeholder="Name of Religious Sect" required>
@@ -851,6 +865,7 @@ select:not(.placeholder) {
 
 </body>
 </html>
+
 
 
 
