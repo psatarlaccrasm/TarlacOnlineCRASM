@@ -527,16 +527,22 @@ select:not(.placeholder) {
 }
 
   .consent-box{
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  gap:10px;
-  font-size:0.9rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;   /* keeps the whole block centered in the form */
+  gap: 6px;                  /* small space between checkbox and text */
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
 .consent-box span{
-  max-width:420px;
-  line-height:1.5;
+  max-width: 420px;          /* keeps paragraph readable */
+  line-height: 1.5;
+  text-align: left;
+}
+
+.consent-box input[type="checkbox"]{
+  margin-top: 3px;           /* aligns checkbox with the word "By" */
 }
 
 </style>
