@@ -871,11 +871,22 @@ select:not(.placeholder) {
   });
 });
 
- const checkbox = document.getElementById("consentCheckbox");
+function updateSubmitButton() {
 
- checkbox.addEventListener("change", function() {
-   submitBtn.disabled = !checkbox.checked;
-});
+  const checkbox = document.getElementById("consentCheckbox");
+
+  // form.checkValidity() verifies all required fields
+  if (checkbox.checked && form.checkValidity()) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+
+}
+
+/* Detect changes in the entire form */
+form.addEventListener("input", updateSubmitButton);
+form.addEventListener("change", updateSubmitButton);
 
   
 </script>
