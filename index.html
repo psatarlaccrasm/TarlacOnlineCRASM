@@ -698,10 +698,13 @@ select:not(.placeholder) {
         <input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png" required>
       </div> -->
 
+      <label>
+      <input type="checkbox" required> 
       <p style="font-size:0.9rem;">
-          By submitting this form, you consent to the collection and processing of
-          your personal data in accordance with the Data Privacy Act of 2012.
+          By submitting this form, I agree to the collection and processing of
+          my personal data in accordance with the Data Privacy Act of 2012.
       </p>
+       </label>
       
         <button id="submitBtn" type="submit">Submit Application</button>
 
@@ -742,7 +745,7 @@ select:not(.placeholder) {
   <div id="loadingOverlay">
   <div class="loading-card">
     <div class="psa-spinner">
-      <img src="images/psa-logo.png" alt="PSA Loading">
+      <img src="images/psa-logo.png" loading="lazy">
     </div>
     <div class="loading-text">Please wait…</div>
     <div class="loading-subtext">
@@ -757,7 +760,7 @@ select:not(.placeholder) {
   const loadingOverlay = document.getElementById("loadingOverlay");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // ⛔ stop instant navigation
+    e.preventDefault(); // 
 
     // Validate first
     if (!form.checkValidity()) {
