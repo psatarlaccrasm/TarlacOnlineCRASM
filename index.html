@@ -788,12 +788,13 @@ select:not(.placeholder) {
     }, 600); // 0.6 second delay (adjustable)
   });
 
-  // 🟢 Hide spinner if user navigates back
-  window.addEventListener("pageshow", function () {
-    loadingOverlay.style.display = "none";
-    submitBtn.disabled = false;
-    submitBtn.innerText = "Submit Application";
-  });
+  
+ window.addEventListener("pageshow", function () {
+  loadingOverlay.style.display = "none";
+  submitBtn.innerText = "Submit Application";
+
+  updateSubmitButton(); 
+});
 
  function toggleForms(e) {
     e.stopPropagation(); // prevent outside click close
