@@ -499,6 +499,11 @@ footer {
   transition: all 0.25s ease;
 }
 
+  #consentCheckbox{
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
 .admin-btn:hover {
   background: #1f6fd2;
   color: #ffffff;
@@ -704,15 +709,18 @@ select:not(.placeholder) {
         <input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png" required>
       </div> -->
 
-  <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.9rem;">
-    <input type="checkbox" id="consentCheckbox" required>
-    <span>
+  <label style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; font-size:0.9rem; margin-top:10px;">
+  
+  <input type="checkbox" id="consentCheckbox" required>
+
+  <span style="max-width:420px; line-height:1.5;">
     By submitting this application, I hereby certify that the information
     provided is true and correct to the best of my knowledge. I also consent
     to the collection and processing of my personal data in accordance with
     the provisions of the Data Privacy Act of 2012.
-   </span>
- </label>
+  </span>
+
+</label>
 
 <br>
 
