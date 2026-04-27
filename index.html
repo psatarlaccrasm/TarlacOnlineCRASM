@@ -716,6 +716,43 @@ select:not(.placeholder) {
   opacity: 0.95;
 }
 
+  .hero-title-block {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+/* MAIN TITLE */
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--dark-blue);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ACCENT WORD */
+.hero-title span {
+  color: var(--blue);
+}
+
+/* SUBTITLE */
+.hero-subtitle {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #5b6b80;
+  font-weight: 400;
+}
+
+  .hero-title-block::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--blue);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
 </style>
 
 <link
@@ -778,7 +815,14 @@ select:not(.placeholder) {
 
   <!-- SERVICES -->
   <section>
-    <h2 class="section-title">Welcome to the PSA Tarlac CRASM Online Portal!</h2>
+   <div class="hero-title-block">
+  <h2 class="hero-title">
+    PSA Tarlac <span>CRASM Portal</span>
+  </h2>
+  <p class="hero-subtitle">
+    Submit and track your CRASM application online
+  </p>
+</div>
     <div class="cards">
       <div class="card">
         <h3>Citizen's Charter</h3>
