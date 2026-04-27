@@ -753,6 +753,38 @@ select:not(.placeholder) {
   border-radius: 2px;
 }
 
+  .section-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title-modern {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+.section-title-modern span {
+  color: var(--blue);
+}
+
+.section-subtitle {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #5b6b80;
+}
+
+.section-header::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--blue);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
 </style>
 
 <link
@@ -860,7 +892,14 @@ select:not(.placeholder) {
 
   <!-- PROCESS -->
   <section>
-    <h2 class="section-title">Application Process</h2>
+    <div class="section-header">
+  <h2 class="section-title-modern">
+    Application <span>Process</span>
+  </h2>
+  <p class="section-subtitle">
+    Follow these simple steps to complete your CRASM application
+  </p>
+</div>
     <div class="process">
       <div class="step"><span>1</span><p>Download required forms</p></div>
       <div class="step"><span>2</span><p>Prepare documents</p></div>
