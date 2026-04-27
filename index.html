@@ -549,6 +549,138 @@ select:not(.placeholder) {
   margin-top:3px;
 }
 
+/* SLIDER */
+.slider {
+  position: relative;
+  max-width: 1100px;
+  margin: 20px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.slides {
+  position: relative;
+  height: 300px;
+}
+
+/* SLIDE */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.slide-content {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: #fff;
+  max-width: 60%;
+}
+
+.slide-content h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.slide-content p {
+  margin: 5px 0 12px;
+  font-size: 0.95rem;
+}
+
+.slide-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* DARK OVERLAY FOR READABILITY */
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+}
+
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+/* DOTS */
+.dots {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  height: 9px;
+  width: 9px;
+  margin: 0 4px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .slides { height: 200px; }
+
+  .slide-content {
+    bottom: 15px;
+    left: 15px;
+    max-width: 90%;
+  }
+
+  .slide-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .slide-content p {
+    font-size: 0.8rem;
+  }
+}
+
 </style>
 
 <link
@@ -571,6 +703,52 @@ select:not(.placeholder) {
   <h1>Philippine Statistics Authority<br>Tarlac Provincial Office</h1>
   <p>CRASM Online Application Form Submission</p>
 </header>
+
+<div class="slider">
+
+  <div class="slides">
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+      <img src="images/banner1.jpg">
+      <div class="slide-content">
+        <h2>CRASM Application Now Online</h2>
+        <p>Submit your application anytime, anywhere</p>
+        <a href="#crasmForm" class="slide-btn">Apply Now</a>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+      <img src="images/banner2.jpg">
+      <div class="slide-content">
+        <h2>Complete Your Requirements</h2>
+        <p>Ensure faster processing by submitting complete documents</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+      <img src="images/banner3.jpg">
+      <div class="slide-content">
+        <h2>Track Your Application</h2>
+        <p>Monitor your CRASM application status online</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ARROWS -->
+  <button class="arrow prev">&#10094;</button>
+  <button class="arrow next">&#10095;</button>
+
+  <!-- DOTS -->
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
 
 <main class="container">
 
@@ -920,6 +1098,88 @@ function updateSubmitButton() {
 /* Detect changes in the entire form */
 form.addEventListener("input", updateSubmitButton);
 form.addEventListener("change", updateSubmitButton);
+
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+let index = 0;
+let interval;
+
+/* SHOW SLIDE */
+function showSlide(i) {
+  slides.forEach((s, idx) => {
+    s.classList.remove("active");
+    dots[idx].classList.remove("active");
+  });
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+}
+
+/* NEXT / PREV */
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide() {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+/* AUTO PLAY */
+function startAutoSlide() {
+  interval = setInterval(nextSlide, 4000);
+}
+
+function stopAutoSlide() {
+  clearInterval(interval);
+}
+
+startAutoSlide();
+
+/* BUTTON EVENTS */
+nextBtn.onclick = () => {
+  nextSlide();
+  stopAutoSlide();
+  startAutoSlide();
+};
+
+prevBtn.onclick = () => {
+  prevSlide();
+  stopAutoSlide();
+  startAutoSlide();
+};
+
+/* DOTS */
+dots.forEach((dot, i) => {
+  dot.onclick = () => {
+    index = i;
+    showSlide(index);
+    stopAutoSlide();
+    startAutoSlide();
+  };
+});
+
+/* PAUSE ON HOVER */
+document.querySelector(".slider").addEventListener("mouseenter", stopAutoSlide);
+document.querySelector(".slider").addEventListener("mouseleave", startAutoSlide);
+
+/* SWIPE (MOBILE) */
+let startX = 0;
+
+document.querySelector(".slider").addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.querySelector(".slider").addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) nextSlide();
+  if (endX - startX > 50) prevSlide();
+});
 
   
 </script>
