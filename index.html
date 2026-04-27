@@ -63,6 +63,7 @@ h1, h2, h3 { margin-top: 0; }
   color: white;
   padding: 35px 15px 30px;
   text-align: center;
+  position: relative;
 }
 .hero-logos {
   display: flex;
@@ -681,6 +682,18 @@ select:not(.placeholder) {
   }
 }
 
+  .pst-clock {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+
+  opacity: 0.95;
+}
+
 </style>
 
 <link
@@ -693,6 +706,7 @@ select:not(.placeholder) {
 <body>
 
 <header class="hero">
+ <div id="pstClock" class="pst-clock"></div>
  <button class="admin-btn" onclick="openAdmin()">
   Admin
 </button>
@@ -1167,6 +1181,30 @@ document.querySelector(".slider").addEventListener("touchend", e => {
   if (startX - endX > 50) nextSlide();
   if (endX - startX > 50) prevSlide();
 });
+
+ function updatePST() {
+  const now = new Date();
+
+  const options = {
+    timeZone: "Asia/Manila",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+  };
+
+  const formatted = new Intl.DateTimeFormat("en-US", options).format(now);
+
+  document.getElementById("pstClock").innerHTML =
+  "Philippine Standard Time<br>" + formatted;
+}
+
+// Update every second
+setInterval(updatePST, 1000);
+updatePST();
 
   
 </script>
