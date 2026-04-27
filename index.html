@@ -560,6 +560,10 @@ select:not(.placeholder) {
   box-shadow: var(--shadow);
 }
 
+  .slide::after {
+  pointer-events: none;
+}
+
 .slides {
   position: relative;
   height: 300px;
@@ -626,20 +630,23 @@ select:not(.placeholder) {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.6);
   color: #fff;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 50%;
+  z-index: 10;
+ 
 }
 
 .prev { left: 10px; }
 .next { right: 10px; }
 
 .arrow:hover {
-  background: rgba(0,0,0,0.7);
+  background: var(--blue);
 }
+  
 
 /* DOTS */
 .dots {
@@ -1202,7 +1209,6 @@ document.querySelector(".slider").addEventListener("touchend", e => {
   "Philippine Standard Time<br>" + formatted;
 }
 
-// Update every second
 setInterval(updatePST, 1000);
 updatePST();
 
